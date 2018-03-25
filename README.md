@@ -1,7 +1,7 @@
 route53-domain-pointer
 ===
 
-Update a route53 record set with the current public IP.
+Update a route53 record set with the current public IP address. Can be useful when you want to access your home resources and your ISP keep changing your IP address.
 
 # Requirements
 
