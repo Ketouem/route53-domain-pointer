@@ -62,6 +62,7 @@ else
       echo "❌ error occured during the update";
     else
       echo "✅";
+      rm $TMP_LOCATION;
     fi
   fi
 fi
