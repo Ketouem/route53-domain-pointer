@@ -5,11 +5,11 @@ DOMAIN_NAME=$(echo $DOMAIN_NAME | tr '[:upper:]' '[:lower:]');
 declare ZONE_ID=$2;
 declare -r TMP_LOCATION="/tmp/route53_domain_pointer_batch.json";
 
-function getPublicIP() {
+getPublicIP() {
   echo $(curl -s https://httpbin.org/ip | grep -oE "([0-9]{1,3}(\.?)){4}");
 }
 
-function getIPForDomain() {
+getIPForDomain() {
   declare domain=$1;
   declare zoneId=$2;
   echo $(aws route53 list-resource-record-sets --hosted-zone-id $zoneId \
@@ -17,7 +17,7 @@ function getIPForDomain() {
                                                --output text);
 }
 
-function updateRecordSet() {
+updateRecordSet() {
   declare domainName=$1;
   declare ip=$2;
   declare zoneId=$3;
