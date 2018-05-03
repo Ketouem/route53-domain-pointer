@@ -6,15 +6,15 @@ declare ZONE_ID=$2;
 declare -r TMP_LOCATION="/tmp/route53_domain_pointer_batch.json";
 
 function getPublicIP() {
-  echo $(curl -s https://httpbin.org/ip | jq -r '.origin');
+  echo $(curl -s https://httpbin.org/ip | grep -oE "([0-9]{1,3}(\.?)){4}");
 }
 
 function getIPForDomain() {
   declare domain=$1;
   declare zoneId=$2;
   echo $(aws route53 list-resource-record-sets --hosted-zone-id $zoneId \
-                                               --query "ResourceRecordSets[?Name == '${domain}.']" \
-                                               --output json | jq -r '.[0].ResourceRecords[0].Value');
+                                               --query "ResourceRecordSets[?Name == '${domain}.'].ResourceRecords[*].Value" \
+                                               --output text);
 }
 
 function updateRecordSet() {

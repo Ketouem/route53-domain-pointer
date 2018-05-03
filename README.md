@@ -6,10 +6,9 @@ Update a route53 record set with the current public IP address. Can be useful wh
 # Requirements
 
 - [aws cli](https://github.com/aws/aws-cli)
-- [jq](https://github.com/stedolan/jq)
 
 ```bash
-brew install jq awscli
+brew install awscli
 ```
 
 # Usage
