@@ -6,7 +6,7 @@ declare ZONE_ID=$2;
 declare -r TMP_LOCATION="/tmp/route53_domain_pointer_batch.json";
 
 getPublicIP() {
-  echo $(curl -s https://httpbin.org/ip | grep -oE "([0-9]{1,3}(\.?)){4}");
+  echo $(curl -s https://httpbin.org/ip | grep -oE "([0-9]{1,3}(\.?)){4}" | uniq);
 }
 
 getIPForDomain() {
